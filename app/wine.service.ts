@@ -4,10 +4,11 @@
 
 import {Injectable} from "@angular/core";
 import {WINES} from "./mock-wines";
+import {Wine} from "./wine";
 
 @Injectable()
 export class WineService {
-    getWines = () => {
+    getWines(): Wine[] {
         return WINES;
     }
 }
