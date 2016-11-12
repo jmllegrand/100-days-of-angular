@@ -8,7 +8,7 @@ import {Wine} from "./wine";
 
 @Injectable()
 export class WineService {
-    getWines(): Wine[] {
-        return WINES;
+    getWines(): Promise<Wine[]> {
+        return Promise.resolve(WINES);
     }
 }

@@ -5,6 +5,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Wine} from "./wine";
 import {WineService} from "./wine.service";
+import {resolve} from "url";
 
 
 
@@ -84,11 +85,25 @@ export class AppComponent implements OnInit {
 
 
     ngOnInit(): void {
-        this.wines = this.wineService.getWines();
+        this.getWinesSlowly();
     }
+
+    getWines = () => {
+        this.wineService.getWines().then(
+            (wines) => {
+                this.wines = wines;
+            }
+        )
+    };
+
+    getWinesSlowly = (): Promise<Wine[]> => {
+        return new Promise<Wine[]> (resolve =>
+        setTimeout(resolve, 2000))
+            .then(() => this.getWines());
+    };
 
 
     onSelect = (wine: Wine) => {
         this.selectedWine = wine;
-    }
+    };
 }

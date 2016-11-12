@@ -231,4 +231,19 @@ do this
         this.wines = this.wineService.getWines();
     }
 ```
+- Adopt an asynchronous approach using Promises
+Using synchronous
+```
+    getWines(): Wine[] {
+        return WINES;
+    }
+```
+
+Using asynchronous with Promises
+```
+    getWines(): Wine[] {
+        return WINES;
+    }
+```
+
 
