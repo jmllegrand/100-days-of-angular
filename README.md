@@ -10,11 +10,6 @@ Concepts used :
 -- @Component to create component
 
 
-
-```
-   this is a command or a js code
-```
-
 ### Day 2
 
 ### Day 2 - section 2
@@ -61,9 +56,7 @@ export class Wine {
 ```
  <input [(ngModel)]="wine.name" placeholder="name">
 ```
-Prerequisites
-
-import the FormsModule package
+Prerequisite: import the FormsModule package
 ```
 @NgModule({
     imports: [BrowserModule, FormsModule],
@@ -176,3 +169,66 @@ Any component added must be declared in the root module
 })
 ```
 The declarations array contains the list of all components, pipes, and directives that we created and that belong in our application's module.
+
+### Day 2 - section 5
+#### Naming convention
+Directive selectors (like my-app), component filenames follow the dash-case convention (kebab-case).
+
+#### Good practice
+- To create a service, use Injectable Services
+
+This is really used when a service has dependencies
+```
+@Injectable()
+export class WineService {
+    getWines = () => {
+        return WINES;
+    }
+}
+```
+- Create const that are exported to use Mock data
+```
+export const WINES: Wine[] = [
+    new Wine(0, "Chateau Ausone"),
+    new Wine(1, "Chateau Figeac"),
+    new Wine(2, "Chateau Canon"),
+    new Wine(3, "Chateau Fleur Cardinale"),
+    new Wine(4, "Chateau Grand Corbin-Despagne"),
+    new Wine(5, "Chateau Petrus"),
+    new Wine(6, "Chateau Eglise Clinet"),
+    new Wine(7, "Chateau L'Evangile"),
+];
+```
+
+- Use a service by injection
+-- We add a constructor that defined the property
+```
+    constructor(private wineService: WineService) { }
+```
+
+
+-- We add the services as part of the providers
+```
+@NgModule({
+    imports: [BrowserModule, FormsModule],
+    declarations: [AppComponent, WineDetailComponent],
+    providers: [WineService],
+    bootstrap: [AppComponent]
+})
+```
+The providers array tells Angular to create a fresh instance of the WineService when it creates a new AppComponent.
+The AppComponent can use that service to get heroes and so can every child component of its component tree.
+
+-- To use the service in a component, prefer the component lifecycle hooks
+Instead of this ...
+```
+    wines : Wine[] =  this.wineService.getWines();
+```
+
+do this
+```
+    ngOnInit(): void {
+        this.wines = this.wineService.getWines();
+    }
+```
+

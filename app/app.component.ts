@@ -2,7 +2,7 @@
  * Created by jmlegrand on 05/11/16.
  */
 
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Wine} from "./wine";
 import {WineService} from "./wine.service";
 
@@ -74,14 +74,19 @@ import {WineService} from "./wine.service";
 })
 
 
-export class AppComponent {
-    wines : Wine[] =  this.wineService.getWines();
+export class AppComponent implements OnInit {
+
+    wines : Wine[];
     title: string = "List of wines";
     selectedWine: Wine;
 
-    constructor(private wineService: WineService) {
-        this.wineService = wineService;
+    constructor(private wineService: WineService) { }
+
+
+    ngOnInit(): void {
+        this.wines = this.wineService.getWines();
     }
+
 
     onSelect = (wine: Wine) => {
         this.selectedWine = wine;
