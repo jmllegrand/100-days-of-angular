@@ -96,8 +96,8 @@ export class AppComponent implements OnInit {
         )
     };
 
-    getWinesSlowly = (): Promise<Wine[]> => {
-        return new Promise<Wine[]> (resolve =>
+    getWinesSlowly(): Promise<void> {
+        return new Promise<void> (resolve =>
         setTimeout(resolve, 2000))
             .then(() => this.getWines());
     };
