@@ -3,7 +3,6 @@
  */
 
 import {Injectable} from "@angular/core";
-import {Injectable} from "@angular/core";
 import {WINES} from "./mock-wines";
 
 @Injectable()
