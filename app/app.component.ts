@@ -77,17 +77,7 @@ const WINES : Wine[] = [
                 {{wine.name}}
             </li>
         </ul>
-        
-        <div *ngIf="selectedWine">
-            <h2> Details for {{selectedWine.name}} :</h2>
-            <div> <label>id: </label> {{selectedWine.id}} </div>
-            <div> 
-                <label>name: </label> 
-                <input [(ngModel)]="selectedWine.name" placeholder="name">
-            </div>
-        </div>
-
-        
+        <wine-detail [wine]="selectedWine"></wine-detail>  
     `
 })
 

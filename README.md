@@ -148,5 +148,31 @@ Our styles will only apply to our AppComponent and won't "leak" to the outer HTM
 ```
 This says that “apply the selected class if the heroes match, remove it if they don’t”.
 
+### Day 2 - section 4
+- Communicate from parent to children components
+-- Using property as Input
+```
+export class WineDetailComponent {
+    @Input() wine: Wine;
+}
+```
+We annotate the wine property with the @Input decorator imported
 
 
+-- Using target property during declaration
+```
+        <wine-detail [wine]="selectedWine"></wine-detail>
+```
+the wine property is the target of a property binding — it's in square brackets to the left of the (=).
+
+#### practice
+Any component added must be declared in the root module
+
+```
+@NgModule({
+    imports: [BrowserModule, FormsModule],
+    declarations: [AppComponent, WineDetailComponent],
+    bootstrap: [AppComponent]
+})
+```
+The declarations array contains the list of all components, pipes, and directives that we created and that belong in our application's module.
