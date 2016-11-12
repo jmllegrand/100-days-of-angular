@@ -4,18 +4,10 @@
 
 import {Component} from "@angular/core";
 import {Wine} from "./wine";
+import {WineService} from "./wine.service";
 
 
-const WINES : Wine[] = [
-    new Wine(0, "Chateau Ausone"),
-    new Wine(1, "Chateau Figeac"),
-    new Wine(2, "Chateau Canon"),
-    new Wine(3, "Chateau Fleur Cardinale"),
-    new Wine(4, "Chateau Grand Corbin-Despagne"),
-    new Wine(5, "Chateau Petrus"),
-    new Wine(6, "Chateau Eglise Clinet"),
-    new Wine(7, "Chateau L'Evangile"),
-];
+
 
 @Component({
     selector: 'my-app',
@@ -83,9 +75,13 @@ const WINES : Wine[] = [
 
 
 export class AppComponent {
-    wines : Wine[] =  WINES;
+    wines : Wine[] =  this.wineService.getWines();
     title: string = "List of wines";
     selectedWine: Wine;
+
+    constructor(private wineService: WineService) {
+        this.wineService = wineService;
+    }
 
     onSelect = (wine: Wine) => {
         this.selectedWine = wine;
