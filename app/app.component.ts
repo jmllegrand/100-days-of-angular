@@ -7,10 +7,19 @@ import {Component} from "@angular/core";
 @Component({
     selector: 'my-app',
     template: `
-        <wines-list></wines-list>
-        <wine-detail [wine]="selectedWine"></wine-detail>  
+        <h1>{{title}}</h1>
+        <nav>
+            <!--a routerLink="/dashboard">Dashboard</a>
+            <a routerLink="/wines">Wines</a-->
+            <router-outlet></router-outlet>
+        </nav>
+
+        <!--wines-list></wines-list-->
+        <!--wine-detail [wine]="selectedWine"></wine-detail-->  
     `
 })
 
 
-export class AppComponent { }
+export class AppComponent {
+    title: string = 'Welcome to the winery !'
+}

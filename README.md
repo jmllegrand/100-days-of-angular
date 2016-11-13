@@ -247,3 +247,37 @@ Using asynchronous with Promises
 ```
 
 ### Day 2 - Routing
+- Configure routes
+Routes tell the router which views to display when a user clicks a link or pastes a URL into the browser address bar.
+Routes are an array of route definitions.
+
+```
+const routes: Routes = [
+    {
+        path: "wines",
+        component: WinesComponent
+    },
+    {
+        path: "dashboard",
+        component: DashboardComponent
+    },
+    {
+        path: "",
+        redirectTo:"/dashboard",
+        pathMatch: "full"
+    }
+
+];
+```
+
+- Define the RouterOutlet
+RouterOutlet is one of the directives provided by the RouterModule. The router displays each component immediately below the <router-outlet> as the user
+navigate through the application.
+```
+        <nav>
+            <a routerLink="/dashboard">Dashboard</a>
+            <a routerLink="/wines">Wines</a>
+            <router-outlet></router-outlet>
+        </nav>
+```
+The anchor tag router-outlet added to the template which, when clicked, triggers navigation to the appropriate component.
