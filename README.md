@@ -12,7 +12,7 @@ Concepts used :
 
 ### Day 2
 
-### Day 2 - section 2
+### Day 2 - Basic Component
 #### Component
 - Define properties at Component level
 
@@ -65,7 +65,7 @@ Prerequisite: import the FormsModule package
 })
 ``
 
-### Day 2 - section 3
+### Day 2 - Master Details
 
 - Create an typed array
 ```
@@ -141,7 +141,7 @@ Our styles will only apply to our AppComponent and won't "leak" to the outer HTM
 ```
 This says that “apply the selected class if the heroes match, remove it if they don’t”.
 
-### Day 2 - section 4
+### Day 2 - Parent Children components
 - Communicate from parent to children components
 -- Using property as Input
 ```
@@ -170,7 +170,7 @@ Any component added must be declared in the root module
 ```
 The declarations array contains the list of all components, pipes, and directives that we created and that belong in our application's module.
 
-### Day 2 - section 5
+### Day 2 - Services
 #### Naming convention
 Directive selectors (like my-app), component filenames follow the dash-case convention (kebab-case).
 
@@ -246,4 +246,4 @@ Using asynchronous with Promises
     }
 ```
 
-
+### Day 2 - Routing
