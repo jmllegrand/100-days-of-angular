@@ -13,9 +13,6 @@ import {Component} from "@angular/core";
             <a routerLink="/wines">Wines</a>
             <router-outlet></router-outlet>
         </nav>
-
-        <!--wines-list></wines-list-->
-        <!--wine-detail [wine]="selectedWine"></wine-detail-->  
     `
 })
 

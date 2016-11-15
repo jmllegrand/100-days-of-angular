@@ -11,4 +11,9 @@ export class WineService {
     getWines(): Promise<Wine[]> {
         return Promise.resolve(WINES);
     }
+
+    getWine(id: number): Promise<Wine> {
+        return this.getWines()
+            .then(wines => wines.find(wine => wine.id ===id))
+    }
 }

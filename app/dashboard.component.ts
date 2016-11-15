@@ -74,11 +74,11 @@ import {Wine} from "./wine";
     template: `
         <h3>Top Wines</h3>
         <div class="grid grid-pad">
-            <div *ngFor="let wine of wines" class="col-1-4">
+            <a *ngFor="let wine of wines" [routerLink]="['/detail', wine.id]" class="col-1-4">
                 <div class="module wine">
                     <h4>{{wine.name}}</h4>
                 </div>
-            </div>
+            </a>
         </div>
     
         `

@@ -247,6 +247,7 @@ Using asynchronous with Promises
 ```
 
 ### Day 2 - Routing
+#### About static routes
 - Configure routes
 Routes tell the router which views to display when a user clicks a link or pastes a URL into the browser address bar.
 Routes are an array of route definitions.
@@ -281,3 +282,56 @@ navigate through the application.
         </nav>
 ```
 The anchor tag router-outlet added to the template which, when clicked, triggers navigation to the appropriate component.
+
+#### About parameterized routes
+- Configure parameterized route
+```
+    {
+        path: "detail/:id",
+        component: WineDetailComponent
+    }
+```
+The colon (:) in the path indicates that :id is a placeholder to be filled with a specific hero id when navigating to the HeroDetailComponent
+
+- Impact on the component
+There is ZERO impact on the template. The big changes are driven by how we get the wine.
+-- Before, we would receive the wine in a parent component property binding
+-- Now, the component will take the id parameter from the params observable in the ActivatedRoute and derived the corresponding object
+```
+    ngOnInit(): void {
+        this.route.params.forEach((params: Params) => {
+            console.log('JM - params', params);
+            console.log('JM - this.route', this.route.toString());
+            let id= +params['id'];
+            this.wineService.getWine(id)
+                .then((wine) => this.wine = wine)
+        })
+    }
+```
+
+- Enable back navigator using location
+```
+    goBack(): void  {
+        this.location.back();
+    }
+```
+
+- Link parameter array
+we're binding to an expression containing a link parameters array.
+The array has two elements, the path of the destination route and a route parameter set
+to the value of the current wine's id
+```
+            <a *ngFor="let wine of wines" [routerLink]="['/detail', wine.id]" class="col-1-4">
+                <div class="module wine">
+                    <h4>{{wine.name}}</h4>
+                </div>
+            </a>
+```
+
+Note that The two array items align with the path and :id token in the parameterized hero detail route definition
+
+
+
+
+
+
