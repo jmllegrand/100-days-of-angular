@@ -10,39 +10,18 @@ import {FormsModule} from "@angular/forms";
 import {WineDetailComponent} from "./wine-detail.component";
 import {WineService} from "./wine.service";
 import {WinesComponent} from "./wines.component";
-import {RouterModule, Routes} from "@angular/router";
 import {DashboardComponent} from "./dashboard.component";
+import {AppRoutingModule} from "./app-routing.module";
 
-const routes: Routes = [
-    {
-        path: "wines",
-        component: WinesComponent
-    },
-    {
-        path: "dashboard",
-        component: DashboardComponent
-    },
-    {
-        path: "",
-        redirectTo:"/dashboard",
-        pathMatch: "full"
-    },
-    {
-        path: "detail/:id",
-        component: WineDetailComponent
-    },
-
-];
 
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
+    imports: [BrowserModule, FormsModule, AppRoutingModule],
     declarations: [AppComponent, WineDetailComponent, WinesComponent, DashboardComponent],
     providers: [WineService],
     bootstrap: [AppComponent],
 })
 
 export class AppModule {
-
 
 }

@@ -5,6 +5,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Wine} from "./wine";
 import {WineService} from "./wine.service";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -60,22 +61,28 @@ import {WineService} from "./wine.service";
     `
     ],
     template: `
-        <h1>{{title}}</h1>
         <ul class="wines">
             <li *ngFor="let wine of wines"  [class.selected]="wine === selectedWine" (click)="onSelect(wine)">
                 <span class="badge">{{wine.id}}</span>
                 {{wine.name}}
             </li>
         </ul>
+        <div *ngIf="selectedWine">
+            <h2>
+                {{selectedWine.name | uppercase}} is a great wine
+            </h2>
+            <button (click)="goToDetail(selectedWine)">View Details</button>
+        </div>
+        
+        
         `
 })
 
 export class WinesComponent implements OnInit {
-    title: string = "List of wines";
     wines : Wine[];
     selectedWine: Wine;
 
-    constructor(private wineService: WineService) { }
+    constructor(private wineService: WineService, private router: Router) { }
 
     ngOnInit(): void {
         this.getWinesSlowly();
@@ -98,5 +105,10 @@ export class WinesComponent implements OnInit {
     onSelect = (wine: Wine) => {
         this.selectedWine = wine;
     };
+
+    goToDetail = (wine: Wine) => {
+        console.log("Go to detail,",  wine);
+        this.router.navigate(['/detail', wine.id]);
+    }
 
 }

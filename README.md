@@ -331,6 +331,46 @@ to the value of the current wine's id
 Note that The two array items align with the path and :id token in the parameterized hero detail route definition
 
 
+- Create a routing module (with routes defined in a const)
+```
+
+const routes: Routes = [
+    {
+        path: "wines",
+        component: WinesComponent
+    },
+    {
+        path: "dashboard",
+        component: DashboardComponent
+    },
+    {
+        path: "",
+        redirectTo:"/dashboard",
+        pathMatch: "full"
+    },
+    {
+        path: "detail/:id",
+        component: WineDetailComponent
+    }
+
+];
+export class AppRoutingModule {}
+
+```
+
+The mmodule is declared in the application module
+```
+@NgModule({
+    imports: [BrowserModule, FormsModule, AppRoutingModule],
+    declarations: [AppComponent, WineDetailComponent, WinesComponent, DashboardComponent],
+    providers: [WineService],
+    bootstrap: [AppComponent],
+})
+
+```
+
+
+
 
 
 
