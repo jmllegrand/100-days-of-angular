@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "clean": "rm -r dist/*",
+    "clean": "rm -r dist/",
     "build": "webpack --display-error-details",
     "start": "webpack-dev-server --inline --progress --port 8082",
     "lite": "lite-server",
@@ -34,6 +34,7 @@
     "@types/core-js": "^0.9.34",
     "@types/node": "^6.0.45",
     "concurrently": "^3.0.0",
+    "html-webpack-plugin": "^2.24.1",
     "ts-loader": "^1.2.2",
     "typescript": "^2.0.6",
     "webpack": "^1.13.3",
