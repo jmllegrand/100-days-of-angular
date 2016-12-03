@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <base href="/">
     <meta charset="UTF-8">
     <title>Webpack App</title>
   </head>
   <body>
     <my-app>Loading stuff</my-app>
-    <script type="text/javascript" src="./dist/bundle.js"></script>
+    <script type="text/javascript" src="./dist/polyfills.js"></script>
+    <script type="text/javascript" src="./dist/vendor.js"></script>
+    <script type="text/javascript" src="./dist/app.js"></script>
   </body>
 </html>

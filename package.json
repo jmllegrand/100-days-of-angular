@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "webpack --display-error-details",
+    "clean": "rm -r dist/*",
+    "build": "webpack --display-error-details",
+    "start": "webpack-dev-server --inline --progress --port 8082",
     "lite": "lite-server",
     "tsc": "tsc",
     "tsc:w": "tsc -w"
@@ -32,11 +34,9 @@
     "@types/core-js": "^0.9.34",
     "@types/node": "^6.0.45",
     "concurrently": "^3.0.0",
-    "html-webpack-plugin": "^2.24.1",
-    "lite-server": "^2.2.2",
     "ts-loader": "^1.2.2",
     "typescript": "^2.0.6",
     "webpack": "^1.13.3",
-    "webpack-uglify-js-plugin": "^1.1.9"
+    "webpack-dev-server": "^1.16.2"
   }
 }
