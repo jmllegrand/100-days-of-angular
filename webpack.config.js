@@ -3,47 +3,58 @@
  */
 
 'use strict';
-
-var HtmlWebpack = require('html-webpack-plugin');
+var path = require('path');
 var webpack = require('webpack');
-//var path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+//var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 
 
 module.exports = {
   entry: {
-    app: './app/main.ts',
-    vendor: './app/vendor.ts'
+    'polyfills': './app/polyfills.ts',
+    'vendor': './app/vendor.ts',
+    'app': './app/main.ts'
   },
   output: {
     path: './dist',
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [
-      { test:  /\.ts$/, loader: 'ts-loader'}
+      {
+        test:  /\.ts$/,
+        loader: 'ts-loader'
+      }
+      /*{
+        test: /\.css$/,
+        exclude: root('app'),
+        loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
+      },
+      {
+        test: /\.css$/,
+        loader: "style!css"
+      } */
+
     ]
   },
   resolve: {
     extensions: [ '', '.js', '.ts' ]
-  }
-  /*plugins: [
-    /*new ChunkWebpack({
-      filename: 'vendor.bundle.js',
-      minChunks: Infinity,
-      name: 'vendor'
-    }),*/
-    /*new HtmlWebpack({
-      filename: 'index.html',
-      inject: 'body'
-      //template: path.resolve(rootDir, 'src', 'index.html')
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html'
     }),
-    new webpack.optimize.UglifyJsPlugin()
-  ]*/
+    new webpack.optimize.CommonsChunkPlugin({
+      name: ['app', 'vendor', 'polyfills']
+    })
+    //new ExtractTextPlugin("styles.css")
+  ]
 };
 
-
-
-
-
-
-
+/*
+function root(args) {
+  args = Array.prototype.slice.call(arguments, 0);
+  return path.join.apply(path, [__dirname].concat(args));
+}
+  */
